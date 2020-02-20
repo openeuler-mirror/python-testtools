@@ -1,6 +1,6 @@
 Name:           python-testtools
 Version:        2.3.0
-Release:        10
+Release:        11
 Summary:        Extensions to the Python unit testing framework
 License:        MIT
 URL:            https://launchpad.net/testtools
@@ -12,7 +12,7 @@ Patch0002:      testtools-2.3.0-py37.patch
 BuildRequires:  python2-devel python2-extras python2-mimeparse >= 0.1.4 python2-pbr python2-setuptools
 BuildRequires:  python2-unittest2 >= 1.0.0 python2-traceback2 python2-testscenarios python3-devel
 BuildRequires:  python3-extras python3-mimeparse python3-pbr python3-setuptools python3-unittest2
-BuildRequires:  python3-traceback2 python3-testscenarios python2-sphinx
+BuildRequires:  python3-traceback2 python3-testscenarios python3-sphinx
 BuildArch:      noarch
 
 %description
@@ -86,5 +86,8 @@ make PYTHON=%{__python3} check
 %doc doc/_build/html/*
 
 %changelog
+* Thu Feb 20 2020 lingsheng <lingsheng@huawei.com> - 2.3.0-11
+- Modify buildrequires to fix build fail
+
 * Wed Nov 27 2019 lingsheng <lingsheng@huawei.com> - 2.3.0-10
 - Package init
