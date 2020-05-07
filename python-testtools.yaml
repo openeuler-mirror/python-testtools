@@ -1,0 +1,4 @@
+version_control: github
+src_repo: testing-cabal/testtools
+tag_prefix: testtools-
+seperator: .
