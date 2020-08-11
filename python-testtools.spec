@@ -68,7 +68,7 @@ make PYTHON=%{__python3} check
 
 %changelog
 * Tue Aug 11 2020 zhangtao <zhangtao221@huawei.com> - 2.3.0-12
-- Del Python2-testtools python2 is EOL and we recomand python3
+- Del Python2-testtools python2 is EOL and we recommend python3
 
 * Thu Feb 20 2020 lingsheng <lingsheng@huawei.com> - 2.3.0-11
 - Modify buildrequires to fix build fail
