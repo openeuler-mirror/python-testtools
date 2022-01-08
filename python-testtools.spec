@@ -1,6 +1,6 @@
 Name:           python-testtools
 Version:        2.4.0
-Release:        1
+Release:        2
 Summary:        Extensions to the Python unit testing framework
 License:        MIT
 URL:            https://launchpad.net/testtools
@@ -10,6 +10,7 @@ BuildRequires:  python3-extras python3-mimeparse python3-pbr python3-setuptools 
 BuildRequires:  python3-traceback2 python3-testscenarios python3-sphinx python3-devel
 BuildArch:      noarch
 Patch0:         testtools-2.4.0-fix-py3-compat.patch
+Patch1:         testtools-2.4.0-fix_py39_test.patch
 
 %description
 Testtools is a set of extensions to the Python standard library's unit testing framework. These
@@ -56,6 +57,9 @@ make PYTHON=%{__python3} check
 %doc doc/_build/html/*
 
 %changelog
+* Sat Jan 08 2021 caodongxia <caodongxia@huawei.com> - 2.4.0-2
+- Fix test fail
+
 * Fri Aug 06 2021 liusheng <liusheng2048@gmail.com> - 2.4.0-1
 - Upgrade to version 2.4.0
 
