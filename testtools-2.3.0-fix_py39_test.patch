@@ -1,0 +1,14 @@
+diff --git a/testtools/tests/test_testresult.py b/testtools/tests/test_testresult.py
+index 7b0b212..fd80a20 100644
+--- a/testtools/tests/test_testresult.py
++++ b/testtools/tests/test_testresult.py
+@@ -2750,6 +2750,9 @@ class TestNonAsciiResults(TestCase):
+         textoutput = self._setup_external_case("import bad")
+         self._write_module("bad", "utf-8", _u("\ufeff^ = 0 # %s\n") % text)
+         textoutput = self._run_external_case()
++        # Python 3.9 no longer prints the '\ufeff'
++        if sys.version_info >= (3,9):
++            textoutput = textoutput.replace('\ufeff', '')
+         self.assertThat(
+             textoutput,
+             MatchesRegex(
