@@ -1,0 +1,37 @@
+From 840f9230f9fc4433237517310b5b3958b7382f09 Mon Sep 17 00:00:00 2001
+From: caodongxia <315816521@qq.com>
+Date: Sat, 2 Apr 2022 11:00:19 +0800
+Subject: [PATCH] fix for python3.10
+Refer: https://github.com/testing-cabal/testtools/commit/254998e2e88835eaa634d9729dddcc3d4b5bc32f
+Refer: https://github.com/testing-cabal/testtools/commit/1d698cf91cb2205aedc018e465a2e17c5a6a3e94
+
+---
+ testtools/tests/test_testresult.py | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/testtools/tests/test_testresult.py b/testtools/tests/test_testresult.py
+index d863794..e06ea03 100644
+--- a/testtools/tests/test_testresult.py
++++ b/testtools/tests/test_testresult.py
+@@ -2681,6 +2681,8 @@ class TestNonAsciiResults(TestCase):
+         """Syntax errors should still have fancy special-case formatting"""
+         if platform.python_implementation() == "PyPy":
+             spaces = '           '
++        elif sys.version_info >= (3, 10):
++            spaces = '        '
+         else:
+             spaces = '          '
+         textoutput = self._test_external_case("exec ('f(a, b c)')")
+@@ -2755,6 +2757,9 @@ class TestNonAsciiResults(TestCase):
+         textoutput = self._setup_external_case("import bad")
+         self._write_module("bad", "utf-8", _u("\ufeff^ = 0 # %s\n") % text)
+         textoutput = self._run_external_case()
++        # Python 3.9 no longer prints the '\ufeff'
++        if sys.version_info >= (3,9):
++            textoutput = textoutput.replace('\ufeff', '')
+         self.assertThat(
+             textoutput,
+             MatchesRegex(
+-- 
+2.27.0
+
